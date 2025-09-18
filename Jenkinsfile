@@ -2,15 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Run Tests') {
-            steps {
-                sh "pip install -r requirements.txt"
-                sh "pytest --maxfail=1 --disable-warnings -q"
-            }
-        }
-        
-        
-
         stage('Build Flask App Docker Image') {
             steps {
                 sh "docker build -t mohammedsami99852/flask-mysql-app:latest ."

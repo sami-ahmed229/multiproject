@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build Flask App Docker Image') {
             steps {
-                sh "docker build -t mohammedsami99852/flask-mysql-app:latest ."
+                sh "docker build -t mohammedsami99852/v1:v1 ."
             }
         }
 
@@ -12,7 +12,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     sh "echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin"
-                    sh "docker push mohammedsami99852/flask-mysql-app:latest"
+                    sh "docker push mohammedsami99852/v1:v1"
                 }
             }
         }
